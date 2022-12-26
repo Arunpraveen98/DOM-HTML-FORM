@@ -39,6 +39,7 @@ function titledivchild(tagname, attname, attvalue, contenttext) {
 }
 
 //-----------------------------------------------------
+
 var fname_div = sixdiv("div", "form-group", "col-md-5");
 var lname_div = sixdiv("div", "form-group", "col-md-5");
 var address_div = sixdiv("div", "form-group", "col-md-10");
@@ -55,6 +56,7 @@ function sixdiv(tagname, divclass1, divclass2) {
 }
 
 //---------------------------------------------------
+
 var fname_label = sixlabel("label", "for", "firstname", "FIRST NAME:");
 var lname_label = sixlabel("label", "for", "lastname", "LAST NAME:");
 var address_label = sixlabel("label", "for", "address", "ADDRESS:");
@@ -70,6 +72,7 @@ function sixlabel(tagname, attname, attvalue, contenttext) {
 }
 
 //------------------------------------------------------------------
+
 var fname_input = sixinput(
   "input",
   "type",
@@ -171,6 +174,7 @@ var gender_p = document.createElement("p");
 gender_p.innerText = "GENDER:";
 
 //----------------------------------------------------------------
+
 var gender_div1 = genderdiv("div", "class", "gender");
 var gender_div2 = genderdiv("div", "class", "gender");
 var gender_div3 = genderdiv("div", "class", "gender");
@@ -182,14 +186,17 @@ function genderdiv(tagname, attname, attvalue) {
 }
 
 //----------------------------------------------------------------
+
 var inputmale = genderinput(
   "input",
   "type",
   "radio",
   "value",
-  "MALE",
+  "male",
   "name",
   "gender",
+  "id",
+  "male",
   "required"
 );
 var inputfemale = genderinput(
@@ -197,9 +204,11 @@ var inputfemale = genderinput(
   "type",
   "radio",
   "value",
-  "FEMALE",
+  "female",
   "name",
   "gender",
+  "id",
+  "female",
   "required"
 );
 var inputothers = genderinput(
@@ -207,9 +216,11 @@ var inputothers = genderinput(
   "type",
   "radio",
   "value",
-  "OTHERS",
+  "others",
   "name",
   "gender",
+  "id",
+  "others",
   "required"
 );
 
@@ -221,23 +232,28 @@ function genderinput(
   attvalue2,
   attname3,
   attvalue3,
-  attname4
+  attname4,
+  attvalue4,
+  attname5
 ) {
   var gendertype = document.createElement(tagname);
   gendertype.setAttribute(attname1, attvalue1);
   gendertype.setAttribute(attname2, attvalue2);
   gendertype.setAttribute(attname3, attvalue3);
-  gendertype.setAttribute(attname4, "");
+  gendertype.setAttribute(attname4, attvalue4);
+  gendertype.setAttribute(attname5, "");
   return gendertype;
 }
 
 //----------------------------------------------------------------
-var malelabel = genderlabel("label", "MALE");
-var femalelabel = genderlabel("label", "FEMALE");
-var otherslabel = genderlabel("label", "OTHERS");
 
-function genderlabel(tagname, contenttext) {
+var malelabel = genderlabel("label", "for", "male", "MALE");
+var femalelabel = genderlabel("label", "for", "female", "FEMALE");
+var otherslabel = genderlabel("label", "for", "others", "OTHERS");
+
+function genderlabel(tagname, attname1, attvalue1, contenttext) {
   var genderLabel = document.createElement(tagname);
+  genderLabel.setAttribute(attname1, attvalue1);
   genderLabel.innerHTML = contenttext;
   return genderLabel;
 }
@@ -249,6 +265,7 @@ food_label.setAttribute("for", "food");
 food_label.innerHTML = "FOOD ITEMS:";
 
 //----------------------------------------------------------------
+
 var food_div1 = fooditemsdiv("div");
 var food_div2 = fooditemsdiv("div");
 var food_div3 = fooditemsdiv("div");
@@ -257,10 +274,12 @@ var food_div5 = fooditemsdiv("div");
 
 function fooditemsdiv(tagname) {
   var foodItems = document.createElement(tagname);
+
   return foodItems;
 }
 
 //------------------------------------------------------------------
+
 var food_input1 = fooditemsinput(
   "input",
   "type",
@@ -268,7 +287,9 @@ var food_input1 = fooditemsinput(
   "name",
   "food",
   "value",
-  "Masala dosa, India."
+  "1) Masala dosa, India.  ",
+  "class",
+  "checkbox"
 );
 var food_input2 = fooditemsinput(
   "input",
@@ -277,7 +298,9 @@ var food_input2 = fooditemsinput(
   "name",
   "food",
   "value",
-  "Tacos, Mexico."
+  "2) Tacos, Mexico.  ",
+  "class",
+  "checkbox"
 );
 var food_input3 = fooditemsinput(
   "input",
@@ -286,7 +309,9 @@ var food_input3 = fooditemsinput(
   "name",
   "food",
   "value",
-  "Som tam, Thailand."
+  "3) Som tam, Thailand.  ",
+  "class",
+  "checkbox"
 );
 var food_input4 = fooditemsinput(
   "input",
@@ -295,7 +320,9 @@ var food_input4 = fooditemsinput(
   "name",
   "food",
   "value",
-  "Potato chips, United Kingdom."
+  "4) Potato chips, United Kingdom.  ",
+  "class",
+  "checkbox"
 );
 var food_input5 = fooditemsinput(
   "input",
@@ -304,7 +331,9 @@ var food_input5 = fooditemsinput(
   "name",
   "food",
   "value",
-  "Buttered popcorn, United States."
+  "5) Buttered popcorn, United States.  ",
+  "class",
+  "checkbox"
 );
 
 function fooditemsinput(
@@ -314,12 +343,15 @@ function fooditemsinput(
   attname2,
   attvalue2,
   attname3,
-  attvalue3
+  attvalue3,
+  attname4,
+  attvalue4
 ) {
   var foodinput = document.createElement(tagname);
   foodinput.setAttribute(attname1, attvalue1);
   foodinput.setAttribute(attname2, attvalue2);
   foodinput.setAttribute(attname3, attvalue3);
+  foodinput.setAttribute(attname4, attvalue4);
   return foodinput;
 }
 
@@ -349,12 +381,12 @@ function fooditemslabel(tagname, attname, attvalue, contenttext) {
 
 //----------------------------------------------------------------
 
-var button_div = document.createElement("button");
+var button_div = document.createElement("div");
 button_div.classList.add("form-group", "col-md-10", "buttonstyle");
 
 //----------------------------------------------------------------
 var button1 = buttonele(
-  "input",
+  "button",
   "btn",
   "btn-primary",
   "innerbutton",
@@ -362,17 +394,21 @@ var button1 = buttonele(
   "submit",
   "id",
   "submit",
+  "value",
+  "SUBMIT",
   "SUBMIT"
 );
 var button2 = buttonele(
-  "input",
+  "button",
   "btn",
   "btn-primary",
   "innerbutton",
   "type",
   "reset",
   "id",
-  "submit",
+  "reset",
+  "value",
+  "RESET",
   "RESET"
 );
 
@@ -385,16 +421,20 @@ function buttonele(
   attvalue2,
   attname3,
   attvalue3,
+  attname4,
+  attvalue4,
   contenttext
 ) {
   var buttons = document.createElement(tagname);
   buttons.classList.add(class1, class2, class3);
   buttons.setAttribute(attname2, attvalue2);
   buttons.setAttribute(attname3, attvalue3);
+  buttons.setAttribute(attname4, attvalue4);
   buttons.innerHTML = contenttext;
   return buttons;
 }
 //----------------------------------------------------------------
+
 var table_div = document.createElement("div");
 table_div.classList.add("form-group", "col-md-10");
 
@@ -410,7 +450,12 @@ tablehead.setAttribute("id", "thead-head");
 
 var tablerow = document.createElement("tr");
 tablerow.setAttribute("id", "rowalign");
+
+var table_body = document.createElement("tbody");
+table_body.setAttribute("id", "table-styles");
+
 //----------------------------------------------------------------
+
 var th1 = tableheader("th", "scope", "col", "FIRST_NAME");
 var th2 = tableheader("th", "scope", "col", "LAST_NAME");
 var th3 = tableheader("th", "scope", "col", "ADDRESS");
@@ -429,6 +474,7 @@ function tableheader(tagname, attname, attvalue, contenttext) {
 //------------------------------------------------------------
 
 // appending...
+
 document.body.append(maincontainer);
 maincontainer.append(formLayout);
 formLayout.append(titlecontent);
@@ -479,17 +525,119 @@ food_div5.append(food_input5, food_label5);
 button_div.append(button1, button2);
 
 table_div.append(tabletag);
-tabletag.append(tablehead);
+tabletag.append(tablehead, table_body);
 tablehead.append(tablerow);
 tablerow.append(th1, th2, th3, th4, th5, th6, th7, th8);
 
-button1.addEventListener("click", btnname);
-function btnname() {
-  var a = document.getElementById("first-name").value;
-  var row1 = document.createElement("tr");
-  var data = document.createElement("td");
-  row1.append(data);
-  data.append(a);
-  tablehead.append(row1);
-}
 //----------------------------------------------------------------
+
+//submit button preventing:-
+
+var prevent_button = document.getElementById("submit");
+prevent_button.addEventListener("click", (ele) => {
+  ele.preventDefault();
+});
+
+//----------------------------------------------------------------
+//SUBMIT BUTTON function:-
+
+button1.addEventListener("click", btnname);
+
+function btnname() {
+  var firstname_value = document.getElementById("first-name").value;
+  var lastname_value = document.getElementById("last-name").value;
+  var address_value = document.getElementById("address").value;
+  var state_value = document.getElementById("state").value;
+  var country_value = document.getElementById("country").value;
+  var pincode_value = document.getElementById("pincode").value;
+
+  //----------------------------------------------------------------
+
+  //creating row for table data:-
+
+  var row1 = document.createElement("tr");
+  table_body.append(row1);
+
+  //----------------------------------------------------------------
+
+  //creating the td elements:-
+
+  var res = [];
+  for (var i = 0; i < 8; i++) {
+    var data = document.createElement("td");
+    res.push(data);
+  }
+  res[0].append(firstname_value);
+  res[1].append(lastname_value);
+  res[2].append(address_value);
+  res[3].append(state_value);
+  res[4].append(country_value);
+  res[5].append(pincode_value);
+
+  //----------------------------------------------------------
+
+  //gender function:-
+
+  if (male.checked) {
+    var male_value = document.getElementById("male").value;
+    res[6].append(male_value);
+  }
+  if (female.checked) {
+    var female_value = document.getElementById("female").value;
+    res[6].append(female_value);
+  }
+  if (others.checked) {
+    var others_value = document.getElementById("others").value;
+    res[6].append(others_value);
+  }
+
+  //------------------------------------------------------------------
+  //food items function:-
+
+  var checkbox_value = document.getElementsByClassName("checkbox");
+
+  for (var j = 0; j < checkbox_value.length; j++) {
+    if (checkbox_value[j].checked) {
+      res[7].append(checkbox_value[j].value);
+    }
+  }
+
+  var null_value = [];
+  for (var k = 0; k < checkbox_value.length; k++) {
+    if (checkbox_value[k].checked) {
+      null_value.push(checkbox_value[k]);
+    }
+  }
+
+  //-------------------------------------------------------------------
+
+  //null input means..
+
+  if (
+    firstname_value == "" ||
+    lastname_value == "" ||
+    address_value == "" ||
+    state_value == "" ||
+    country_value == "" ||
+    pincode_value == "" ||
+    (male_value == "" && female_value == "" && others_value == "") ||
+    null_value.length == 0
+  ) {
+    alert("<< Please, Fill all the input fields >>");
+  }
+  //-------------------------------------------------------------------------
+
+  //Food items alert when less than 2:-
+
+  if (null_value.length < 2) {
+    alert("<<Please select minimum 2 Food items Out of 5>>");
+  }
+
+  //----------------------------------------------------------------
+
+  //td appending...
+
+  row1.append(res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+
+  //---------------------------------------------------------------------
+}
