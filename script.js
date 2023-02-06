@@ -1,4 +1,4 @@
-//Title
+//? Title
 let maincontainer = setTitle("div", "class", "container-fluid");
 let formLayout = setTitle("main", "id", "form-layout");
 let titlecontent = setTitle("form", "id", "form");
@@ -473,7 +473,7 @@ function tableheader(tagname, attname, attvalue, contenttext) {
 }
 //------------------------------------------------------------
 
-// appending...
+//? appending...
 
 document.body.append(maincontainer);
 maincontainer.append(formLayout);
@@ -531,7 +531,7 @@ tablerow.append(th1, th2, th3, th4, th5, th6, th7, th8);
 
 //----------------------------------------------------------------
 
-//submit button preventing:-
+//? Submit button preventing:-
 
 let prevent_button = document.getElementById("submit");
 prevent_button.addEventListener("click", (ele) => {
@@ -539,7 +539,7 @@ prevent_button.addEventListener("click", (ele) => {
 });
 
 //----------------------------------------------------------------
-//SUBMIT BUTTON function:-
+//? SUBMIT BUTTON function:-
 
 button1.addEventListener("click", btnname);
 
@@ -553,65 +553,29 @@ function btnname() {
 
   //----------------------------------------------------------------
 
-  //creating row for table data:-
+  //? creating row for table data:-
 
   let row1 = document.createElement("tr");
   table_body.append(row1);
 
   //----------------------------------------------------------------
 
-  //creating the td elements:-
-
   let res = [];
-  for (let i = 0; i < 8; i++) {
-    let data = document.createElement("td");
-    res.push(data);
-  }
-  res[0].append(firstname_value);
-  res[1].append(lastname_value);
-  res[2].append(address_value);
-  res[3].append(state_value);
-  res[4].append(country_value);
-  res[5].append(pincode_value);
+  let male_value;
+  let female_value;
+  let others_value;
 
   //----------------------------------------------------------
 
-  //gender function:-
-
-  if (male.checked) {
-    var male_value = document.getElementById("male").value;
-    res[6].append(male_value);
-  }
-  if (female.checked) {
-    let female_value = document.getElementById("female").value;
-    res[6].append(female_value);
-  }
-  if (others.checked) {
-    let others_value = document.getElementById("others").value;
-    res[6].append(others_value);
-  }
-
-  //------------------------------------------------------------------
-  //food items function:-
-
-  let checkbox_value = document.getElementsByClassName("checkbox");
-
-  for (let j = 0; j < checkbox_value.length; j++) {
-    if (checkbox_value[j].checked) {
-      res[7].append(checkbox_value[j].value);
-    }
-  }
+  //? null input means..
 
   let null_value = [];
+  let checkbox_value = document.getElementsByClassName("checkbox");
   for (let k = 0; k < checkbox_value.length; k++) {
     if (checkbox_value[k].checked) {
       null_value.push(checkbox_value[k]);
     }
   }
-
-  //-------------------------------------------------------------------
-
-  //null input means..
 
   if (
     firstname_value == "" ||
@@ -627,17 +591,65 @@ function btnname() {
   }
   //-------------------------------------------------------------------------
 
-  //Food items alert when less than 2:-
+  //? Food items alert when less than 2:-
 
   if (null_value.length < 2) {
     alert("<<Please select minimum 2 Food items Out of 5>>");
   }
 
-  //----------------------------------------------------------------
+  //------------------------------------------------------------------
+  //? Checking the input fields are filled and then appending them to the table...
+  if (
+    firstname_value !== "" &&
+    lastname_value !== "" &&
+    address_value !== "" &&
+    state_value !== "" &&
+    country_value !== "" &&
+    pincode_value !== "" &&
+    (male_value !== "" || female_value !== "") &&
+    null_value.length === 2
+  ) {
+    //-------------------------------------------------------------------
+    //? creating the td elements:-
+    for (let i = 0; i < 8; i++) {
+      let data = document.createElement("td");
+      res.push(data);
+    }
+    //-------------------------------------------------------------------
+    res[0].append(firstname_value);
+    res[1].append(lastname_value);
+    res[2].append(address_value);
+    res[3].append(state_value);
+    res[4].append(country_value);
+    res[5].append(pincode_value);
+    //-------------------------------------------------------------------
+    //? gender function:-
 
-  //td appending...
+    if (male.checked) {
+      male_value = document.getElementById("male").value;
+      res[6].append(male_value);
+    }
+    if (female.checked) {
+      female_value = document.getElementById("female").value;
+      res[6].append(female_value);
+    }
+    if (others.checked) {
+      others_value = document.getElementById("others").value;
+      res[6].append(others_value);
+    }
+    //-------------------------------------------------------------------
+    //? food items function:-
 
-  row1.append(res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+    for (let j = 0; j < checkbox_value.length; j++) {
+      if (checkbox_value[j].checked) {
+        res[7].append(checkbox_value[j].value);
+      }
+    }
+    //-------------------------------------------------------------------
+    //? td appending...
 
-  //---------------------------------------------------------------------
+    row1.append(res[0], res[1], res[2], res[3], res[4], res[5], res[6], res[7]);
+  }
+
+  //-------------------------------------------------------------------
 }
